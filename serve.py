@@ -36,8 +36,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 WEB_DIR = os.path.join(HERE, "web", "dist")
 sys.path.insert(0, HERE)
 
-HOST = "127.0.0.1"
-PORT = 8000
+# Loopback by default: the local demo must not be reachable from the network
+# it happens to be sitting on. Deployments override both, because a container
+# or an EC2 instance has to accept traffic from outside itself — set
+# EUV_HOST=0.0.0.0. Nothing else in the app reads these.
+HOST = os.environ.get("EUV_HOST", "127.0.0.1")
+PORT = int(os.environ.get("PORT") or os.environ.get("EUV_PORT") or 8000)
 
 MIME = {
     ".html": "text/html; charset=utf-8",
@@ -371,7 +375,12 @@ def main() -> int:
     print("  EUV COMPONENTS OPTIMIZER")
     print("=" * 62)
     print(f"\n  http://{HOST}:{PORT}\n")
-    print("  Bound to loopback only. Nothing on your network can reach it.")
+    if HOST in ("127.0.0.1", "localhost", "::1"):
+        print("  Bound to loopback only. Nothing on your network can reach it.")
+    else:
+        # Say so plainly rather than printing a reassurance that is now false.
+        print(f"  Bound to {HOST} — reachable from the network.")
+        print("  There is no authentication on these routes.")
     print("  Ctrl+C to stop.\n")
 
     try:

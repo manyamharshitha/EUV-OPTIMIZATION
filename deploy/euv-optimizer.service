@@ -1,0 +1,43 @@
+[Unit]
+Description=EUV Components Optimizer
+Documentation=https://github.com/manyamharshitha/EUV-OPTIMIZATION
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=euv
+Group=euv
+WorkingDirectory=/opt/euv-optimizer
+
+# Bind to loopback, NOT 0.0.0.0. nginx is the only thing that talks to this
+# process, and it does so over the loopback interface. Leaving the Python
+# server unreachable from outside the box means the stdlib http.server is
+# never directly exposed to the internet.
+Environment=EUV_HOST=127.0.0.1
+Environment=PORT=8000
+Environment=PYTHONUNBUFFERED=1
+
+ExecStart=/usr/bin/python3 /opt/euv-optimizer/serve.py
+Restart=always
+RestartSec=3
+
+# Hardening. The app only ever reads its own directory and answers HTTP, so
+# it has no business writing to the filesystem or gaining privileges.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+# __pycache__ is the one thing it may want to write; PYTHONDONTWRITEBYTECODE
+# makes even that unnecessary.
+Environment=PYTHONDONTWRITEBYTECODE=1
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=euv-optimizer
+
+[Install]
+WantedBy=multi-user.target
