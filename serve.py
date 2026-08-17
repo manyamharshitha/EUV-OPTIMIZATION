@@ -125,6 +125,30 @@ def api_ai(params: dict) -> dict:
         cached["cached"] = True
         return cached
 
+    # Feasibility check BEFORE the lock. When no configuration satisfies the
+    # constraints there is nothing to analyse, and backend.run returns None for
+    # every analysis section — which used to reach dict(None) and answer HTTP
+    # 500, so tightening the budget past feasibility broke screen 7 instead of
+    # explaining itself.
+    #
+    # This has to happen outside the lock. Held inside it, the answer queues
+    # behind whatever generation is already running — including the warm-up
+    # started at boot — so a question that takes 0.14s to settle was waiting
+    # minutes for a model pass whose result it does not even need.
+    #
+    # Reported in the shape the screen already handles: it renders `reason`
+    # whenever status is not "ok".
+    probe = backend.run(budget_usd=key[0], min_efficiency=key[1],
+                        max_timeline_years=key[2], iso_class=key[3])
+    if not (probe.get("results") or {}).get("feasible_count"):
+        return {
+            "status": "unavailable",
+            "reason": "No configuration satisfies these constraints, so there "
+                      "is nothing to analyse. Raise the budget or timeline, "
+                      "or lower the minimum efficiency.",
+            "cached": False,
+        }
+
     # One generation at a time. Two browser tabs asking at once would
     # otherwise queue two six-minute jobs against one CPU.
     with _ai_lock:
@@ -136,6 +160,15 @@ def api_ai(params: dict) -> dict:
         result = backend.run(include_ai=True, budget_usd=key[0],
                              min_efficiency=key[1], max_timeline_years=key[2],
                              iso_class=key[3])["ai"]
+
+        # Belt and braces: feasible above but None here means the AI layer
+        # itself declined. Still must not reach dict(None).
+        if result is None:
+            return {"status": "unavailable",
+                    "reason": "The analysis layer returned nothing for this "
+                              "configuration.",
+                    "cached": False}
+
         _ai_cache[key] = result
 
     fresh = dict(result)
@@ -198,7 +231,12 @@ def api_cost_reduction(params: dict) -> dict:
 
 def api_frontier(params: dict) -> dict:
     import backend
-    return backend.tradeoff_frontier(max_points=_int(params, "points", 40))
+    # Clamp. `points=0` divided by zero inside tradeoff_frontier and answered
+    # HTTP 500; a request for zero points is meaningless rather than dangerous,
+    # so treat it as the minimum instead of failing. The upper bound keeps a
+    # hostile `points=99999` from building a needlessly huge response.
+    points = max(2, min(200, _int(params, "points", 40)))
+    return backend.tradeoff_frontier(max_points=points)
 
 
 def api_alternatives(params: dict) -> dict:
@@ -311,6 +349,12 @@ class Handler(BaseHTTPRequestHandler):
         if handler:
             try:
                 self._send_json(handler(params))
+            except ValueError as exc:
+                # The caller sent something invalid — an unknown goal name, a
+                # number that will not parse. That is a bad request, not a
+                # server fault, and answering 500 misdirects whoever is
+                # debugging it. The message already names the valid options.
+                self._send_json({"ok": False, "error": str(exc)}, 400)
             except Exception as exc:
                 traceback.print_exc()
                 self._send_json(
