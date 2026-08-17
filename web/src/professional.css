@@ -1,0 +1,608 @@
+/* ==========================================================================
+   Professional pass — Webflow reference
+
+   Measured from webflow.com: white ground, one saturated blue for interactive
+   chrome, 8-12px radii, soft layered shadows that lift on hover, an 8px
+   spacing base with generous section rhythm, and a genuinely wide type scale
+   (48-64px display against 14-16px captions).
+
+   The nine per-screen colours stay, but their job narrows: they identify
+   DATA. Interface chrome -- buttons, links, focus, active states -- is all
+   one blue. Mixing nine hues into the controls as well is what made the
+   earlier version read as a toy rather than a product.
+   ========================================================================== */
+
+:root {
+  --brand: #146ef5;
+  --brand-press: #0b52c4;
+
+  --bg: #ffffff;
+  --bg-sub: #f7f8fa;
+  --bg-sink: #eef0f4;
+
+  --ink: #0f1115;
+  --ink-2: #4a5163;
+  --ink-3: #7c8497;
+  --hair: #e4e7ec;
+
+  --sh-1: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --sh-2: 0 2px 8px rgba(16, 24, 40, 0.08);
+  --sh-3: 0 12px 28px -8px rgba(16, 24, 40, 0.16);
+
+  --r: 10px;
+  --r-sm: 7px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+.field {
+  background: var(--bg);
+}
+.lattice {
+  display: none;
+}
+
+/* Rhythm ------------------------------------------------------------------ */
+
+.shell {
+  max-width: 1240px;
+  padding: 32px clamp(20px, 4vw, 56px) 72px;
+}
+.masthead {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--hair);
+}
+.home {
+  gap: 56px;
+}
+.grid {
+  gap: 20px;
+}
+.tiles {
+  gap: 16px;
+}
+
+/* Type -------------------------------------------------------------------- */
+
+.wordmark h1 {
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+}
+.wordmark p {
+  color: var(--ink-3);
+  font-size: 0.8rem;
+}
+
+.hero {
+  background: none;
+  border: 0;
+  padding: 8px 0 0;
+  gap: 48px;
+}
+.hero h2 {
+  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.033em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.hero h2 span {
+  color: var(--brand);
+}
+.hero p {
+  font-size: clamp(1rem, 1.4vw, 1.13rem);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+.hero p b {
+  color: var(--ink);
+  font-weight: 600;
+  font-family: inherit;
+}
+.hero-stats {
+  gap: 44px;
+}
+.hero-n {
+  font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+.hero-l {
+  font-size: 0.83rem;
+  color: var(--ink-3);
+}
+
+/* Surfaces ---------------------------------------------------------------- */
+
+.panel,
+.tile {
+  background: var(--bg);
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  box-shadow: var(--sh-1);
+  transition: box-shadow 0.22s ease, border-color 0.22s ease,
+    transform 0.22s ease;
+}
+.panel {
+  padding: 0 0 24px;
+  overflow: hidden;
+}
+.panel:hover {
+  box-shadow: var(--sh-2);
+  border-color: #d5d9e2;
+  transform: none;
+}
+
+.tile {
+  padding: 22px 24px;
+  gap: 18px;
+}
+.tile::after {
+  display: none;
+}
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-3);
+  border-color: #d5d9e2;
+  background: var(--bg);
+}
+
+/* Panel header + inset ---------------------------------------------------- */
+
+.panel h2 {
+  margin: 0 0 20px;
+  padding: 16px 24px;
+  background: var(--bg-sub);
+  border-bottom: 1px solid var(--hair);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.008em;
+  color: var(--ink);
+}
+.panel h2 .idx {
+  color: var(--ink-3);
+  font-weight: 600;
+}
+.panel > *:not(h2) {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+.panel .tbl-wrap {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+/* Screen header ----------------------------------------------------------- */
+
+.screen-head {
+  margin-bottom: 24px;
+  gap: 20px;
+}
+.screen-head h2 {
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+.screen-head h2 span {
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+/* Buttons ----------------------------------------------------------------- */
+
+.btn,
+.shell .btn {
+  background: var(--bg);
+  border: 1px solid #d3d8e0;
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  font-weight: 550;
+  font-size: 0.87rem;
+  padding: 9px 16px;
+  box-shadow: var(--sh-1);
+  transition: background 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+.shell .btn:hover {
+  background: var(--bg-sub);
+  border-color: #b9c0cc;
+  box-shadow: var(--sh-2);
+  transform: none;
+}
+.btn:active,
+.shell .btn:active {
+  background: var(--bg-sink);
+  box-shadow: none;
+}
+.btn.on,
+.shell .btn.on,
+.shell .btn.violet.on {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+  box-shadow: var(--sh-1);
+}
+.shell .btn.on:hover {
+  background: var(--brand-press);
+  border-color: var(--brand-press);
+}
+.pager .btn {
+  border-left-width: 1px !important;
+}
+.btn.back {
+  color: var(--brand);
+}
+
+/* Badges ------------------------------------------------------------------ */
+
+.badges {
+  border-left: 1px solid var(--hair);
+  padding-left: 20px;
+  gap: 0;
+}
+.badge {
+  color: var(--ink-2);
+  font-size: 0.83rem;
+  padding-right: 20px;
+}
+.badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Data -------------------------------------------------------------------- */
+
+.readout,
+.shell .readout {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 700;
+  letter-spacing: -0.033em;
+  color: var(--ink);
+}
+.shell .readout.mint {
+  color: #0d8a5f;
+}
+.shell .readout.rose {
+  color: #c0392b;
+}
+.caption {
+  font-size: 0.83rem;
+  color: var(--ink-3);
+}
+.mini,
+.shell .mini {
+  font-family: var(--font-body);
+  font-size: 1.22rem;
+  font-weight: 650;
+  color: var(--ink);
+  letter-spacing: -0.018em;
+}
+.note,
+.empty {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.list li {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.list li::before,
+.shell .list li::before {
+  background: var(--brand);
+}
+
+/* Tables ------------------------------------------------------------------ */
+
+table {
+  font-size: 0.875rem;
+}
+th {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--hair);
+  padding: 0 16px 10px 0;
+}
+td {
+  padding: 12px 16px 12px 0;
+  border-top: 1px solid var(--hair);
+  color: var(--ink);
+}
+.shell tbody tr:hover {
+  background: var(--bg-sub);
+}
+.shell tbody tr.lead td {
+  color: var(--ink);
+  font-weight: 600;
+}
+table.spec td {
+  padding: 16px 16px 16px 0;
+}
+.spec-name {
+  font-size: 0.9rem;
+  font-weight: 550;
+}
+.spec-note,
+.spec-limit {
+  font-size: 0.79rem;
+  color: var(--ink-3);
+}
+.spec-value {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 650;
+}
+
+/* Tiles ------------------------------------------------------------------- */
+
+.tile-n {
+  color: var(--ink-3);
+  font-weight: 650;
+  font-size: 0.8rem;
+}
+.tile-body b {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+}
+.tile-body em {
+  font-size: 0.79rem;
+  color: var(--ink-3);
+}
+.tile-val b {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.026em;
+  color: var(--ink);
+}
+.tile-lead .tile-val b {
+  font-size: 1.85rem;
+}
+.tile-val em {
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+.tile-go,
+.tile:hover .tile-go {
+  color: var(--brand);
+  font-size: 1.1rem;
+}
+.tile-spark {
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+/* Bars, micro, chips ------------------------------------------------------ */
+
+.bar,
+.chart-track {
+  background: var(--bg-sink);
+  border-radius: 999px;
+}
+.bar > i,
+.chart-track > i,
+.shell .bar > i {
+  border-radius: 999px;
+}
+.micro {
+  background: var(--bg-sink);
+  border-radius: 999px;
+  height: 3px;
+}
+.micro > i {
+  border-radius: 999px;
+  opacity: 0.85;
+}
+.chip {
+  border-radius: 999px;
+  font-size: 0.76rem;
+  padding: 4px 11px;
+  border-color: var(--hair);
+  color: var(--ink-2);
+  background: var(--bg-sub);
+}
+.chip.hyp {
+  color: #b3261e;
+  border-color: #f3c9c4;
+  background: #fdf2f1;
+}
+.chip.real,
+.shell .chip.real {
+  color: #0d6b47;
+  border-color: #bfe3d2;
+  background: #f0faf5;
+}
+
+/* Controls ---------------------------------------------------------------- */
+
+input[type="range"] {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--bg-sink);
+}
+.shell input[type="range"] {
+  background: linear-gradient(
+    90deg,
+    var(--brand) var(--pct, 50%),
+    var(--bg-sink) var(--pct, 50%)
+  );
+}
+input[type="range"]::-webkit-slider-thumb,
+.shell input[type="range"]::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #cfd5df;
+  box-shadow: var(--sh-2);
+}
+.shell input[type="range"]::-webkit-slider-thumb:hover {
+  background: #fff;
+  box-shadow: var(--sh-3);
+  transform: none;
+}
+.control label {
+  font-size: 0.87rem;
+  color: var(--ink-2);
+}
+.shell .control label b {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* Stage rows -------------------------------------------------------------- */
+
+.stage {
+  border-bottom: 1px solid var(--hair);
+  padding: 13px 0;
+}
+.stage:hover {
+  background: transparent;
+}
+.stage .lbl {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+.shell .stage .val {
+  color: var(--ink);
+  font-weight: 650;
+  font-family: var(--font-body);
+}
+
+/* Notices ----------------------------------------------------------------- */
+
+.disclose {
+  border-radius: var(--r);
+  padding: 16px 20px;
+  box-shadow: var(--sh-1);
+}
+.disclose.critical {
+  background: #fef3f2;
+  border-color: #fda29b;
+}
+.disclose.high {
+  background: #fffaeb;
+  border-color: #fec84b;
+}
+.disclose .head {
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.disclose .say {
+  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-size: 0.87rem;
+}
+.disclose .sev {
+  border-radius: 999px;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+}
+.inline-caveat {
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+}
+.inline-caveat.critical {
+  background: #fef3f2;
+}
+.inline-caveat.quiet {
+  background: var(--bg-sub);
+}
+
+.stat-row {
+  border-top: 1px solid var(--hair);
+}
+.stat-row > div {
+  padding: 16px 24px 16px 0;
+  border-right: 1px solid var(--hair);
+}
+
+.footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hair);
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  gap: 10px 28px;
+}
+
+/* ==========================================================================
+   Plasma field — animated EUV source on the home screen
+   ========================================================================== */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: 40px;
+}
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; }
+}
+.hero-copy { min-width: 0; }
+.hero-stats { margin-top: 32px; }
+
+.plasma {
+  position: relative;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: #080a12;
+  border: 1px solid #1a1e2e;
+  box-shadow: var(--sh-3);
+  aspect-ratio: 16 / 11;
+  min-height: 260px;
+}
+.plasma canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.plasma-legend {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  display: grid;
+  gap: 5px;
+  pointer-events: none;
+}
+.plasma-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: rgba(226, 231, 246, 0.72);
+  letter-spacing: 0.005em;
+}
+.plasma-legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+}
+.k-core { background: #fdf6e6; box-shadow: 0 0 7px rgba(255, 250, 235, 0.85); }
+.k-euv  { background: #8f7dff; box-shadow: 0 0 7px rgba(143, 125, 255, 0.8); }
+.k-col  { background: #e0a33c; box-shadow: 0 0 7px rgba(224, 163, 60, 0.8); }
+
+/* Masthead mark ----------------------------------------------------------- */
+
+/* Canvas; Mark.jsx owns the drawing and the animation, so there is nothing
+   here but a size — and refine.css sets the final one. */
+.mark { width: 44px; height: 44px; display: block; }

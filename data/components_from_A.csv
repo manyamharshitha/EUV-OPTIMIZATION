@@ -1,0 +1,40 @@
+component_id,category,name,supplier,country,cost_usd,cost_low_usd,cost_high_usd,efficiency,readiness_risk,readiness,lead_time_years,is_baseline,specs_json,source,confidence,notes
+C01,EUV light source,CO2 laser-driven tin plasma,ASML/TRUMPF/ZEISS,Netherlands,17500000,10000000,25000000,,1.00,Industrial/production,,1,{},ASML/TRUMPF/ZEISS,MODELED,Industrial baseline
+C02,EUV light source,2 um laser-driven tin plasma,VU Amsterdam 2023,Netherlands,10000000,5000000,15000000,0.0500,0.40,Research-stage,,0,{},VU Amsterdam 2023,MODELED,Published experimental maximum
+C03,EUV light source,1 um Nd:YAG-driven tin plasma,VU Amsterdam 2019,Netherlands,7500000,3000000,12000000,0.0320,0.40,Research-stage,,0,{},VU Amsterdam 2019,MODELED,Published experimental result
+C04,Drive laser,CO2 laser,TRUMPF,Germany,25000000,15000000,35000000,,1.00,Industrial/production,,1,{},TRUMPF,MODELED,Industrial EUV drive-laser architecture
+C05,Drive laser,CO2 laser amplifier,TRUMPF,Germany,10000000,5000000,15000000,,1.00,Industrial/production,,1,{},TRUMPF,MODELED,"More than 10,000x amplification; >30 kW mean pulse power described"
+C06,Drive laser,2 um laser,VU Amsterdam 2023,Netherlands,7500000,3000000,12000000,,0.40,Research-stage,,0,{},VU Amsterdam 2023,MODELED,Published experimental maximum
+C07,Drive laser,2 um laser,VU Amsterdam 2023,Netherlands,6500000,3000000,10000000,0.0500,0.40,Research-stage,,0,{},VU Amsterdam 2023,MODELED,Published experimental maximum
+C08,Drive laser,1 um Nd:YAG solid-state laser,VU Amsterdam 2019,Netherlands,3000000,1000000,5000000,0.0320,0.40,Research-stage,,0,{},VU Amsterdam 2019,MODELED,Published experimental result
+C09,Tin droplet generator,Tin microdroplet generator,TRUMPF/ZEISS,Germany,3000000,1000000,5000000,,1.00,Industrial/production,,1,{},TRUMPF/ZEISS,MODELED,Industrial source rate
+C10,Tin target,Preshaped tin microdroplet,VU Amsterdam 2023,Netherlands,1250000,500000,2000000,,0.40,Research-stage,,0,{},VU Amsterdam 2023,MODELED,Used in 2 um experiment
+C11,Plasma source,Laser-produced tin plasma,ZEISS/TRUMPF,Germany,5000000,2000000,8000000,,1.00,Industrial/production,,1,{},ZEISS/TRUMPF,MODELED,Approximate described plasma temperature
+C12,Laser pulse sequence,Pre-pulse + main pulse,ZEISS,Germany,2500000,1000000,4000000,,1.00,Industrial/production,,1,{},ZEISS,MODELED,Pre-pulse expands droplet; main pulse creates hot plasma
+C13,Collector,Multilayer reflective collector mirror,TRUMPF/ZEISS,Germany,17500000,10000000,25000000,,1.00,Industrial/production,,1,{},TRUMPF/ZEISS,MODELED,Collector follows plasma source
+C14,Illumination optics,Multilayer reflective mirror system,ZEISS,Germany,25000000,15000000,35000000,,1.00,Industrial/production,,1,{},ZEISS,MODELED,EUV cannot pass through ordinary glass/air
+C15,Projection optics,0.33 NA EUV,ZEISS/ASML,Netherlands,37500000,25000000,50000000,,1.00,Industrial/production,,1,{},ZEISS/ASML,MODELED,Established EUV architecture
+C16,Projection optics,0.55 NA High-NA EUV,ZEISS/ASML,Netherlands,90000000,60000000,120000000,,1.00,Industrial/production,,0,{},ZEISS/ASML,MODELED,High-NA architecture
+C17,Projection optics,0.55 NA High-NA EUV,ZEISS,Germany,35000000,20000000,50000000,,1.00,Industrial/production,,0,{},ZEISS,MODELED,"ZEISS states >40,000 parts and ~12 tonnes"
+C18,Illumination system,0.55 NA High-NA illuminator,ZEISS,Germany,17500000,10000000,25000000,,1.00,Industrial/production,,0,{},ZEISS,MODELED,Approximate High-NA illumination-system weight
+C19,EUV mask,Reflective multilayer mask,ZEISS,Germany,5000000,2000000,8000000,,1.00,Industrial/production,,1,{},ZEISS,MODELED,EUV mask architecture
+C20,Optical environment,High-vacuum EUV path,ZEISS/TRUMPF,Germany,10000000,5000000,15000000,,1.00,Industrial/production,,1,{},ZEISS/TRUMPF,MODELED,Required because EUV is absorbed by air
+C21,Particle control,Tin debris mitigation,Project model,UNKNOWN,5000000,2000000,8000000,,0.50,Model assumption,,1,{},Project model,MODELED,No public component-level price found
+C22,Wafer stage,Established EUV wafer stage,ASML,Netherlands,10000000,5000000,15000000,,1.00,Industrial/production,,1,{},ASML,MODELED,Relevant system subsystem
+C23,Reticle stage,Established EUV reticle stage,ASML/ZEISS,Netherlands,10000000,5000000,15000000,,1.00,Industrial/production,,1,{},ASML/ZEISS,MODELED,High-NA uses faster reticle/wafer stages
+C24,Reticle stage,High-NA faster reticle stage,ASML,Netherlands,14000000,8000000,20000000,,1.00,Industrial/production,,0,{},ASML,MODELED,Required to maintain productivity with smaller exposure field
+C25,Wafer stage,High-NA faster wafer stage,ASML,Netherlands,14000000,8000000,20000000,,1.00,Industrial/production,,0,{},ASML,MODELED,Required for High-NA productivity
+C26,Projection optics,Anamorphic projection optics,ASML/ZEISS,Netherlands,20000000,10000000,30000000,,1.00,Industrial/production,,0,{},ASML/ZEISS,MODELED,High-NA design uses anamorphic optics
+C27,Projection optics,Standard 0.33 NA projection optics,ASML/ZEISS,Netherlands,37500000,25000000,50000000,,1.00,Industrial/production,,1,{},ASML/ZEISS,MODELED,Baseline comparison
+C33,Source metrology,Vessel metrology sensors,ASML,Netherlands,3000000,1000000,5000000,,1.00,Industrial/production,,1,{},ASML,MODELED,"ASML describes lasers, cameras and sensors used to regulate stable plasma and target timing"
+C34,Droplet targeting,Laser-droplet synchronization system,ASML/TRUMPF,Netherlands,1750000,500000,3000000,,1.00,Industrial/production,,1,{},ASML/TRUMPF,MODELED,Synchronization is required to hit moving tin droplets at production rate
+C35,Tin management,Tin capture and removal system,ASML,Netherlands,3000000,1000000,5000000,,1.00,Industrial/production,,1,{},ASML,MODELED,ASML identifies tin contamination as a source problem and describes capture/removal research
+C36,Debris mitigation,Magnetic-field debris mitigation,Gigaphoton 2021 EUVL Workshop,Japan,1750000,500000,3000000,,0.50,,,0,{},Gigaphoton 2021 EUVL Workshop,MODELED,Published HVM source work describes debris mitigation by magnetic field
+C37,Mirror coating,Multilayer Bragg mirror coating,ASML/ZEISS,Netherlands,20000000,10000000,30000000,,1.00,Industrial/production,,1,{},ASML/ZEISS,MODELED,ASML states each EUV mirror has more than 100 engineered layers
+C38,Mirror surface,Ultra-smooth EUV mirror,ASML,Netherlands,12500000,5000000,20000000,,1.00,Industrial/production,,1,{},ASML,MODELED,ASML describes mirror smoothness requirement at approximately less than one atom thickness
+C39,Mirror control,Active mirror positioning/actuation,ASML,Netherlands,6000000,2000000,10000000,,1.00,Industrial/production,,1,{},ASML,MODELED,ASML describes thousands of actuators for precise optical-element adjustment
+C40,Optical thermal control,Thermal-distortion compensation,ASML,Netherlands,3000000,1000000,5000000,,1.00,Industrial/production,,1,{},ASML,MODELED,Repeated EUV pulses heat optics; active compensation is used to control distortion
+C41,Collector,High-precision multilayer collector,ZEISS/TRUMPF,Germany,17500000,10000000,25000000,,1.00,Industrial/production,,0,{},ZEISS/TRUMPF,MODELED,Meaningful engineering alternative within the same mirror-based physics; no unsupported performance claim
+C42,Tin droplet shaping,Flattened tin droplet before main pulse,ASML 2025 Annual Report,Netherlands,1750000,500000,3000000,,1.00,Industrial/production,,0,{},ASML 2025 Annual Report,MODELED,ASML reports flattening the tin droplet before the explosion increased EUV light output
+C43,Laser architecture,Dual-pulse CO2 architecture,ASML/ZEISS,Netherlands,25000000,15000000,35000000,,1.00,Industrial/production,,1,{},ASML/ZEISS,MODELED,Pre-pulse plus main pulse is established source architecture
+C44,Laser architecture,2 um experimental LPP architecture,VU Amsterdam 2023,Netherlands,10000000,5000000,15000000,0.0500,0.40,Research-stage,,0,{},VU Amsterdam 2023,MODELED,Research-stage alternative; should be modeled as lower technology-readiness than industrial CO2

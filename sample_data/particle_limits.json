@@ -1,0 +1,15 @@
+{
+  "_comment": "PLACEHOLDER - Person A owns the real particle_limits.json. Omitting a class here makes particle_manager fall back to the ISO 14644-1 formula, which is the correct behaviour. Values below are the ISO limits at 0.1 um for reference only.",
+  "_schema": {
+    "<iso_class>": {
+      "particles_per_m3": "float, override for the ISO formula",
+      "source": "citation or MODELED",
+      "confidence": "HIGH | MEDIUM | LOW"
+    }
+  },
+  "1": {"particles_per_m3": 10.0, "source": "ISO 14644-1:2015 Table 1", "confidence": "HIGH"},
+  "2": {"particles_per_m3": 100.0, "source": "ISO 14644-1:2015 Table 1", "confidence": "HIGH"},
+  "3": {"particles_per_m3": 1000.0, "source": "ISO 14644-1:2015 Table 1", "confidence": "HIGH"},
+  "4": {"particles_per_m3": 10000.0, "source": "ISO 14644-1:2015 Table 1", "confidence": "HIGH"},
+  "5": {"particles_per_m3": 100000.0, "source": "ISO 14644-1:2015 Table 1", "confidence": "HIGH"}
+}

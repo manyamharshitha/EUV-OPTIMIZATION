@@ -1,0 +1,29 @@
+component_id,category,name,supplier,country,cost_usd,efficiency,lead_time_years,is_baseline,specs_json,source,confidence
+LAS_BASE,drive_laser,TRUMPF 30 kW CO2 drive laser,TRUMPF,Germany,30000000,0.97,4.5,1,"{""laser_power_kw"": 30.0, ""conversion_efficiency"": 0.05}",S2-TRUMPF-30KW,MEDIUM
+LAS_ALT1,drive_laser,CO2 drive laser derated to 20 kW,TRUMPF,Germany,21000000,0.93,3.5,0,"{""laser_power_kw"": 20.0, ""conversion_efficiency"": 0.05}",MODELED,LOW
+LAS_ALT2,drive_laser,2 um solid-state driver (research stage),Research consortium,Netherlands,17500000,0.90,6.5,0,"{""laser_power_kw"": 25.0, ""conversion_efficiency"": 0.05}",S3-APL-2UM-5PCT,LOW
+LAS_ALT3,drive_laser,15 kW CO2 laser hypothetical domestic build,HYPOTHETICAL,India,11000000,0.82,6.0,0,"{""laser_power_kw"": 15.0, ""conversion_efficiency"": 0.042}",MODELED,LOW
+DRP_BASE,droplet_generator,Tin droplet generator 50 kHz,ASML,Netherlands,8000000,0.96,3.0,1,"{""droplet_rate_khz"": 50.0}",S2-TRUMPF-30KW,MEDIUM
+DRP_ALT1,droplet_generator,Tin droplet generator 40 kHz,HYPOTHETICAL,Japan,5900000,0.92,2.5,0,"{""droplet_rate_khz"": 40.0}",MODELED,LOW
+DRP_ALT2,droplet_generator,Piezo droplet generator 30 kHz hypothetical,HYPOTHETICAL,India,3400000,0.84,4.0,0,"{""droplet_rate_khz"": 30.0}",MODELED,LOW
+COL_BASE,collector_mirror,ZEISS Ru-capped collector 5 sr,ZEISS,Germany,14000000,0.95,4.0,1,"{""collector_reflectivity"": 0.55, ""collection_solid_angle_sr"": 5.0}",S6-COLLECTOR-5SR,MEDIUM
+COL_ALT1,collector_mirror,Collector extended to 5.5 sr,ZEISS,Germany,16800000,0.97,4.5,0,"{""collector_reflectivity"": 0.55, ""collection_solid_angle_sr"": 5.5}",S6-COLLECTOR-5SR,MEDIUM
+COL_ALT2,collector_mirror,Grazing-incidence collector Ru-coated,HYPOTHETICAL,Germany,9800000,0.88,3.5,0,"{""collector_reflectivity"": 0.376, ""collection_solid_angle_sr"": 4.0}",S6-GIC-37PCT,LOW
+COL_ALT3,collector_mirror,Domestic collector hypothetical,HYPOTHETICAL,India,6200000,0.80,5.5,0,"{""collector_reflectivity"": 0.45, ""collection_solid_angle_sr"": 3.5}",MODELED,LOW
+ILL_BASE,illuminator,ZEISS illuminator 4-mirror,ZEISS,Germany,20000000,0.94,4.0,1,"{""illuminator_mirrors"": 4}",S5-MIRROR-COUNT,HIGH
+ILL_ALT1,illuminator,Illuminator 3-mirror simplified,HYPOTHETICAL,Germany,15200000,0.89,3.0,0,"{""illuminator_mirrors"": 3}",MODELED,LOW
+ILL_ALT2,illuminator,Domestic illuminator hypothetical,HYPOTHETICAL,India,9100000,0.79,5.5,0,"{""illuminator_mirrors"": 3}",MODELED,LOW
+POB_BASE,projection_optics,ZEISS POB NA 0.33 6-mirror,ZEISS,Germany,65000000,0.96,6.0,1,"{""numerical_aperture"": 0.33, ""mirror_count"": 10, ""mirror_reflectivity"": 0.70, ""k1"": 0.35}",S1-ASML-NXE3400B,HIGH
+POB_ALT1,projection_optics,POB NA 0.33 interface-engineered coatings,ZEISS,Germany,71500000,0.98,6.5,0,"{""numerical_aperture"": 0.33, ""mirror_count"": 10, ""mirror_reflectivity"": 0.703, ""k1"": 0.35}",S4-MOSI-703,HIGH
+POB_ALT2,projection_optics,POB NA 0.33 dc-magnetron coatings,ZEISS,Germany,58500000,0.93,5.0,0,"{""numerical_aperture"": 0.33, ""mirror_count"": 10, ""mirror_reflectivity"": 0.688, ""k1"": 0.36}",S4-MOSI-688,HIGH
+POB_ALT3,projection_optics,ZEISS High-NA POB NA 0.55,ZEISS,Germany,135000000,0.99,8.0,0,"{""numerical_aperture"": 0.55, ""mirror_count"": 10, ""mirror_reflectivity"": 0.70, ""k1"": 0.35}",S7-EXE5000-380M,MEDIUM
+POB_ALT4,projection_optics,POB NA 0.25 hypothetical domestic,HYPOTHETICAL,India,34000000,0.78,7.5,0,"{""numerical_aperture"": 0.25, ""mirror_count"": 10, ""mirror_reflectivity"": 0.62, ""k1"": 0.40}",MODELED,LOW
+VAC_BASE,vacuum_system,Hydrogen-purged UHV system,UNSPECIFIED,United Kingdom,10000000,0.95,2.5,1,"{""base_pressure_pa"": 0.00001}",MODELED,LOW
+VAC_ALT1,vacuum_system,UHV system mid-tier,UNSPECIFIED,Germany,7100000,0.91,2.0,0,"{""base_pressure_pa"": 0.00003}",MODELED,LOW
+VAC_ALT2,vacuum_system,Domestic UHV assembly hypothetical,HYPOTHETICAL,India,4200000,0.84,3.0,0,"{""base_pressure_pa"": 0.00008}",MODELED,LOW
+STG_BASE,wafer_stage,Dual-stage TWINSCAN wafer stage,ASML,Netherlands,24000000,0.97,4.0,1,{},S1-ASML-NXE3400B,MEDIUM
+STG_ALT1,wafer_stage,Single-stage maglev hypothetical,HYPOTHETICAL,India,14400000,0.90,3.5,0,{},MODELED,LOW
+STG_ALT2,wafer_stage,Air-bearing precision stage hypothetical,HYPOTHETICAL,India,9200000,0.82,3.0,0,{},MODELED,LOW
+MET_BASE,metrology_sensors,Inline metrology and overlay suite,ASML,Netherlands,12000000,0.96,2.5,1,{},S1-ASML-NXE3400B,MEDIUM
+MET_ALT1,metrology_sensors,Reduced inline metrology hypothetical,HYPOTHETICAL,India,7000000,0.90,2.0,0,{},MODELED,LOW
+MET_ALT2,metrology_sensors,Offline metrology only hypothetical,HYPOTHETICAL,India,3400000,0.78,1.5,0,{},MODELED,LOW

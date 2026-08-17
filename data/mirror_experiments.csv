@@ -1,0 +1,13 @@
+experiment_id,coating,deposition_method,bilayers,interlayer,wavelength_nm,bilayer_spacing_nm,peak_width_nm,reflectivity,mirrors_in_train,train_transmission,data_type,source,confidence
+MX001,Mo/Si,interface engineered,50,B4C,13.5,,0.545,0.700,,,PUBLISHED,S4-MOSI-70-50BL,HIGH
+MX002,Mo/Si,interface engineered,,B4C,13.5,,,0.703,,,PUBLISHED,S4-MOSI-703,HIGH
+MX003,Mo/Si,dc-magnetron sputtering,,,13.5,,,0.688,,,PUBLISHED,S4-MOSI-688,HIGH
+MX004,Mo/Si,near-normal incidence best samples,,,13.5,,,0.710,,,PUBLISHED,S17-MOSI-71PCT,MEDIUM
+MX005,Mo/Si,measured curves typical range low,,,13.5,,,0.650,,,PUBLISHED,S17-MOSI-65-68,HIGH
+MX006,Mo/Si,measured curves typical range high,,,13.5,,,0.680,,,PUBLISHED,S17-MOSI-65-68,HIGH
+MX007,Mo/Si,control specimen,,,13.6,6.97,,0.570,,,PUBLISHED,S17-MOSI-57-CONTROL,MEDIUM
+MX008,Mo/Si,theoretical limit,,,13.5,,,0.750,,,PUBLISHED,S4-MOSI-THEORY-75,MEDIUM
+MX009,Ru capped,grazing incidence collector,,,13.5,,,0.376,,,PUBLISHED,S6-GIC-37PCT,MEDIUM
+MX011,Mo/Si,production fleet average,,,13.5,,,0.650,10,0.0135,PUBLISHED,S5-MIRROR-COUNT,HIGH
+MX012,Mo/Si,illuminator only,,,13.5,,,0.650,4,,PUBLISHED,S5-MIRROR-COUNT,HIGH
+MX013,Mo/Si,projection optics only,,,13.5,,,0.650,6,,PUBLISHED,S5-MIRROR-COUNT,HIGH

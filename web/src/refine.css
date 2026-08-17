@@ -1,0 +1,409 @@
+/* ==========================================================================
+   Refinement pass
+
+   Three things from the reference material:
+
+   1. Type was too small throughout. The reference sites run 16-18px body and
+      40px+ headings; this was sitting at 13-14px body, which is why it read
+      as cramped no matter what else changed.
+   2. Buttons were outlined and grey. The reference uses a solid filled
+      primary and a soft-tinted secondary — colour carries the hierarchy.
+   3. The mark was 44px and pale against a 20px heading, so it disappeared.
+   ========================================================================== */
+
+:root {
+  /* Soft tints, taken from the reference: accents appear as pale washes
+     behind icons and secondary buttons rather than as saturated fills. */
+  --tint-blue: #eaf1ff;
+  --tint-mint: #e6f7ef;
+  --tint-amber: #fff5e3;
+  --tint-rose: #ffeef0;
+
+  --ok: #12a06a;
+  --ok-press: #0d7f54;
+  --ok-tint: #e6f7ef;
+}
+
+/* --------------------------------------------------------------------------
+   Type scale — everything up a step
+   -------------------------------------------------------------------------- */
+
+body {
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.wordmark h1 {
+  font-size: clamp(1.22rem, 1.9vw, 1.5rem);
+  letter-spacing: -0.022em;
+}
+.wordmark p {
+  font-size: 0.93rem;
+  margin-top: 4px;
+}
+
+.hero h2 {
+  font-size: clamp(2.3rem, 5vw, 3.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+.hero p {
+  font-size: clamp(1.06rem, 1.4vw, 1.2rem);
+  line-height: 1.62;
+}
+.hero-n {
+  font-size: clamp(1.85rem, 2.9vw, 2.5rem);
+}
+.hero-l {
+  font-size: 0.95rem;
+}
+
+.screen-head h2 {
+  font-size: clamp(1.55rem, 2.9vw, 2.15rem);
+}
+
+.panel h2 {
+  font-size: 1rem;
+  padding: 18px 26px;
+}
+.panel > *:not(h2) {
+  margin-left: 26px;
+  margin-right: 26px;
+}
+.panel .tbl-wrap {
+  margin-left: 26px;
+  margin-right: 26px;
+}
+
+.readout,
+.shell .readout {
+  font-size: clamp(2.3rem, 4.4vw, 3.2rem);
+}
+.caption {
+  font-size: 0.95rem;
+}
+.mini,
+.shell .mini {
+  font-size: 1.42rem;
+}
+.note,
+.empty,
+.list li {
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+table {
+  font-size: 0.97rem;
+}
+th {
+  font-size: 0.87rem;
+  padding: 0 18px 12px 0;
+}
+td {
+  padding: 14px 18px 14px 0;
+}
+table.spec td {
+  padding: 18px 18px 18px 0;
+}
+.spec-name {
+  font-size: 1rem;
+}
+.spec-note,
+.spec-limit {
+  font-size: 0.88rem;
+}
+.spec-value {
+  font-size: 1.2rem;
+}
+
+.badge {
+  font-size: 0.93rem;
+  padding-right: 22px;
+}
+.chip {
+  font-size: 0.85rem;
+  padding: 5px 13px;
+}
+.control label {
+  font-size: 0.97rem;
+}
+.stage .lbl {
+  font-size: 1rem;
+}
+.shell .stage .val {
+  font-size: 1.1rem;
+}
+.footer {
+  font-size: 0.92rem;
+}
+.chart-lbl,
+.chart-val,
+.legend-lbl,
+.legend-val {
+  font-size: 0.9rem;
+}
+
+/* Tiles ------------------------------------------------------------------- */
+
+.tile {
+  padding: 26px 28px;
+}
+.tile-n {
+  font-size: 0.95rem;
+}
+.tile-body b {
+  font-size: 1.08rem;
+}
+.tile-body em {
+  font-size: 0.9rem;
+}
+.tile-val b {
+  font-size: 1.55rem;
+}
+.tile-lead .tile-val b {
+  font-size: 2.15rem;
+}
+.tile-val em {
+  font-size: 0.86rem;
+}
+.tile-go {
+  font-size: 1.3rem;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons — filled primary, soft-tinted secondary
+   -------------------------------------------------------------------------- */
+
+.btn,
+.shell .btn {
+  font-size: 0.97rem;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: 9px;
+  letter-spacing: -0.006em;
+  background: var(--bg);
+  border: 1px solid #d7dce4;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+  transition: background 0.18s ease, border-color 0.18s ease,
+    box-shadow 0.18s ease, transform 0.18s ease, color 0.18s ease;
+}
+.shell .btn:hover {
+  background: var(--tint-blue);
+  border-color: #b9cdf5;
+  color: var(--brand);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(20, 110, 245, 0.28);
+}
+.btn:active,
+.shell .btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+  background: #dfe9fd;
+}
+
+/* Engaged: solid fill, the way the reference marks a chosen state. */
+.btn.on,
+.shell .btn.on,
+.shell .btn.violet.on {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+  box-shadow: 0 4px 12px -4px rgba(20, 110, 245, 0.45);
+}
+.shell .btn.on:hover {
+  background: var(--brand-press);
+  border-color: var(--brand-press);
+  color: #fff;
+  box-shadow: 0 6px 16px -4px rgba(20, 110, 245, 0.5);
+}
+
+/* Apply buttons in the weighting table read as a soft affirmative until
+   chosen, matching the mint secondary in the reference. */
+table.spec .btn {
+  background: var(--ok-tint);
+  border-color: #bfe6d3;
+  color: var(--ok-press);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+table.spec .btn:hover {
+  background: #d6f2e5;
+  border-color: #9fd9bd;
+  color: var(--ok-press);
+  box-shadow: 0 4px 12px -4px rgba(18, 160, 106, 0.3);
+}
+table.spec .btn.on,
+.shell table.spec .btn.on {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #fff;
+  box-shadow: 0 4px 12px -4px rgba(18, 160, 106, 0.45);
+}
+.shell table.spec .btn.on:hover {
+  background: var(--ok-press);
+  border-color: var(--ok-press);
+}
+
+/* Back is a text link with an arrow, not a boxed control. */
+.btn.back,
+.shell .btn.back {
+  background: none;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--brand);
+  padding-left: 0;
+}
+.shell .btn.back:hover {
+  background: none;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--brand-press);
+  transform: translateX(-3px);
+}
+
+.btn:disabled,
+.shell .btn:disabled {
+  opacity: 0.45;
+  transform: none;
+  box-shadow: none;
+  background: var(--bg-sub);
+}
+
+/* --------------------------------------------------------------------------
+   Logo lockup
+
+   The mark is a canvas, not an SVG — see components/Mark.jsx. Its palette is
+   generated (magenta through violet into electric blue, sampled off the
+   reference) rather than declared here, because hue varies continuously along
+   every ribbon and there is nothing a custom property could usefully hold.
+
+   The one colour that is fixed is the ink of the "euv" wordmark, and that
+   lives in lib/orb.js next to the letterform geometry, so the app and the
+   generated .svg files cannot disagree about it.
+   -------------------------------------------------------------------------- */
+
+.mark {
+  width: 42px;
+  height: 42px;
+  flex: none;
+  display: block;
+  /* No filters, shadows or transforms. The mark already carries its own soft
+     field; a CSS drop-shadow under it reads as a smudge on a white page, and
+     anything that resamples the canvas throws away the hairline cores that
+     give the ribbons their edge. */
+}
+
+/* One-colour version: the canvas reads its own computed `color` and draws the
+   whole tangle in it, keeping only the opacity structure. So the same
+   component works on a light ground, inverted on a dark one, and as a single
+   plate in print. */
+.mark.mono {
+  color: var(--ink);
+}
+
+/* The mark is a circle and the name is a horizontal block, so they are aligned
+   on their optical centres rather than on their boxes: the wordmark is nudged
+   down by the difference between the cap height and the circle's centre. */
+.wordmark {
+  gap: 14px;
+  align-items: center;
+}
+
+/* Type pairing: a clean humanist sans against the geometric mark. Weight and
+   tracking carry the hierarchy instead of case — the previous all-caps setting
+   fought the circle for attention and widened the block until it crowded the
+   badges. All system-resident; a webfont link would fail with the network
+   pulled, which is the one thing this demo must survive. */
+.wordmark h1 {
+  font-family: "Segoe UI Variable Display", "Segoe UI Semibold", "Segoe UI",
+    system-ui, sans-serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+  font-weight: 650;
+  letter-spacing: -0.014em;
+  text-transform: none;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+/* Descriptor in the mono face, letterspaced and small — it reads as a caption
+   to the name rather than competing with it. */
+.wordmark p {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 5px;
+}
+
+/* --------------------------------------------------------------------------
+   Beamline simulation (screen 9)
+   -------------------------------------------------------------------------- */
+
+.simflow {
+  position: relative;
+  border: 1px solid var(--hair);
+  border-radius: var(--r);
+  background: var(--surface, #f1e9e1);
+  overflow: hidden;
+}
+.simflow canvas {
+  display: block;
+  width: 100%;
+  /* Tall enough that the fold train does not collapse into a flat line, but
+     short enough that the panel below it stays on screen at 1080p. */
+  height: clamp(230px, 26vw, 320px);
+}
+.simflow-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--hair);
+  background: var(--bg-sub);
+}
+.simflow-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.83rem;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.simflow-legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: none;
+}
+.sf-drive { background: #c0392b; }
+.sf-euv   { background: #6c4cf5; }
+.sf-mask  { background: #4b1d7e; }
+.sf-die   { background: #fff; border: 1.5px solid #c0392b; }
+
+/* --------------------------------------------------------------------------
+   Plasma panel — light
+   -------------------------------------------------------------------------- */
+
+.plasma {
+  background: #ffffff;
+  border: 1px solid var(--hair);
+  box-shadow: 0 18px 40px -20px rgba(16, 24, 40, 0.22);
+  min-height: 320px;
+}
+.plasma-legend span {
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.plasma-legend i {
+  width: 9px;
+  height: 9px;
+  box-shadow: none;
+  border: 1px solid rgba(16, 24, 40, 0.12);
+}
+.k-core { background: #ffcf7a; }
+.k-euv  { background: #7c5cff; }
+.k-col  { background: #c68426; }

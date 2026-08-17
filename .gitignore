@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+.vite/
+
+# The built frontend IS committed on purpose: serve.py serves web/dist, and
+# the demo has to run with the network pulled, so a fresh clone cannot rely on
+# `npm install`. Only the intermediate build caches are ignored.
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local runtime output
+*.log
+.expo/
