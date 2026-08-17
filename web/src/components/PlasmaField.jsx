@@ -98,13 +98,24 @@ export function PlasmaField({ data }) {
     // between monitors of different pixel ratios looks like.
     window.addEventListener("resize", resize);
 
+    // Every moving part of this scene — the pulse cycle, the droplet, the
+    // drive beam, the filament wobble, the core flicker, the sweep — is
+    // driven off `t`, so scaling `t` alone slows the whole thing coherently
+    // and keeps the timing relationships between them intact. Slowing the
+    // parts individually would drift them out of step with each other.
+    // At 0.45 the strike cycle drops from 1.1 Hz to about 0.5 Hz: roughly one
+    // pulse every two seconds, calm enough to watch behind the headline.
+    const SPEED = 0.45;
+
     // Offset so the very first frame lands mid-pulse. t=0 is between strikes —
     // and the first frame is the ONLY frame in a backgrounded or
     // non-compositing tab, the state a demo laptop sits in while you set up.
-    const start = performance.now() - 690;
+    // Dividing by SPEED keeps the opening frame identical at any speed: the
+    // scaling below multiplies it straight back out to the same t of 0.690.
+    const start = performance.now() - 690 / SPEED;
 
     const render = (now) => {
-      const t = (now - start) / 1000;
+      const t = ((now - start) / 1000) * SPEED;
       const s = dataRef.current?.simulation || {};
 
       const capture = Math.min(
