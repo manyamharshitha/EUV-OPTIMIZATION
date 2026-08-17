@@ -1,0 +1,14 @@
+experiment_id,organisation,target_type,drive_laser,laser_wavelength_um,pulse_energy_mj,rep_rate_khz,drive_power_kw,conversion_efficiency,euv_inband_power_w,data_type,source,confidence
+LX001,various,planar tin,CO2,10.6,,,,0.020,,PUBLISHED,S8-CE-PLANAR-2PCT,MEDIUM
+LX002,various,tin cavity 200 um depth,CO2,10.6,,,,0.040,,PUBLISHED,S8-CE-CAVITY-4PCT,MEDIUM
+LX003,various,tin droplet 20 um,CO2,10.6,,,,0.034,,PUBLISHED,S8-CE-DROPLET-34,MEDIUM
+LX004,various,tin droplet narrow spectrum,CO2,10.6,,,,0.045,,PUBLISHED,S8-CE-45PCT,MEDIUM
+LX005,various,tin droplet optimised pulse,CO2,10.6,2.0,,,0.047,,PUBLISHED,S8-CE-47PCT,MEDIUM
+LX006,research,tin microdroplet,solid-state,2.0,,,,0.050,,PUBLISHED,S3-APL-2UM-5PCT,HIGH
+LX007,Gigaphoton,tin droplet pre-pulse + CO2 main pulse,CO2,10.6,150.0,100.0,,0.052,175.0,PUBLISHED,S14-GIGAPHOTON-52,HIGH
+LX008,Gigaphoton,tin droplet pre-pulse + CO2 main pulse,CO2,10.6,,,,0.047,,PUBLISHED,S14-GIGAPHOTON-AVG47,HIGH
+LX009,Gigaphoton,tin droplet HVM demonstration,CO2,10.6,,100.0,,0.040,250.0,PUBLISHED,S14-GIGAPHOTON-250W,MEDIUM
+LX010,Gigaphoton,tin droplet 2014 milestone,CO2,10.6,,,,,92.0,PUBLISHED,S15-GIGAPHOTON-92W,MEDIUM
+LX011,TRUMPF,tin droplet HVM production,CO2,10.6,20.0,50.0,30.0,,,PUBLISHED,S2-TRUMPF-30KW,HIGH
+LX012,industry,tin droplet HVM production upper,CO2,10.6,,,,0.060,,PUBLISHED,S9-CE-PRODUCTION-56,MEDIUM
+LX013,industry,tin droplet HVM production lower,CO2,10.6,,,,0.050,,PUBLISHED,S9-CE-PRODUCTION-56,MEDIUM

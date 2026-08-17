@@ -1,0 +1,172 @@
+{
+  "_generated_by": "phase1_generate_knowledge.py",
+  "_purpose": "Grounded fact base for the local model. Regenerate after any change to data/components.csv.",
+  "_rules_for_model": [
+    "Use only facts in this file.",
+    "Every number you state must carry its source key.",
+    "If a fact is not here, say you do not have it.",
+    "Never present a HYPOTHETICAL component as purchasable.",
+    "Never claim 7 nm is reached at NA 0.33.",
+    "Where general background conflicts with a project figure, the project figure wins."
+  ],
+  "physics": [
+    {
+      "fact": "EUV lithography uses a wavelength of 13.5 nm.",
+      "source": "universal",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "The drive laser is a CO2 laser at 10.6 micrometres.",
+      "source": "S2-TRUMPF-30KW",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "At NA 0.33 the printed half-pitch is 14.318 nm, computed as k1 * lambda / NA.",
+      "source": "computed",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "At NA 0.55 (High-NA) the printed half-pitch is 8.591 nm.",
+      "source": "computed",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "7 nm single-exposure resolution is NOT achievable at NA 0.33. The computed value is 14.318 nm.",
+      "source": "computed",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "Optical transmission through 10 mirrors at 70% each is 1.5254%.",
+      "source": "S5-MIRROR-COUNT",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "The optical train has 6 projection mirrors and 4 illuminator mirrors, 10 in total.",
+      "source": "S5-MIRROR-COUNT",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "Conversion efficiency from CO2 laser to in-band EUV is 5-6% in production machines, and 2-4.7% in published laboratory experiments depending on target geometry.",
+      "source": "S8-CE, S9-CE-PRODUCTION-56",
+      "confidence": "MEDIUM"
+    },
+    {
+      "fact": "Mo/Si multilayer reflectivity at 13.5 nm is 68.8% by dc-magnetron sputtering, 70.3% with interface engineering, with a theoretical ceiling near 75%.",
+      "source": "S4-MOSI",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "Depth of focus scales as 1/NA^2 while resolution scales as 1/NA, so raising NA costs focus budget faster than it gains resolution.",
+      "source": "Rayleigh",
+      "confidence": "HIGH"
+    }
+  ],
+  "components": [
+    {
+      "fact": "The component database holds 28 parts. 13 carry a real citation; 15 are marked MODELED.",
+      "source": "data/components.csv",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "13 components are marked HYPOTHETICAL. These parts do not exist and cannot be purchased. They are specified development targets, not catalogue items.",
+      "source": "data/components.csv",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "The only suppliers in the database that actually exist are ASML, ZEISS and TRUMPF. Every supplier listed in India is HYPOTHETICAL.",
+      "source": "data/SOURCING_APPENDIX.md",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "The baseline configuration totals $183,000,000, anchored to the published price of a Low-NA ASML NXE scanner. The split across subsystems is MODELED -- no public bill of materials exists.",
+      "source": "S7-EXE5000-380M",
+      "confidence": "MEDIUM"
+    },
+    {
+      "fact": "TRUMPF 30 kW CO2 drive laser is supplied by TRUMPF (Germany), category drive_laser.",
+      "source": "S2-TRUMPF-30KW",
+      "confidence": "MEDIUM"
+    },
+    {
+      "fact": "CO2 drive laser derated to 20 kW is supplied by TRUMPF (Germany), category drive_laser.",
+      "source": "MODELED",
+      "confidence": "LOW"
+    },
+    {
+      "fact": "2 um solid-state driver (research stage) is supplied by Research consortium (Netherlands), category drive_laser.",
+      "source": "S3-APL-2UM-5PCT",
+      "confidence": "LOW"
+    },
+    {
+      "fact": "Tin droplet generator 50 kHz is supplied by ASML (Netherlands), category droplet_generator.",
+      "source": "S2-TRUMPF-30KW",
+      "confidence": "MEDIUM"
+    },
+    {
+      "fact": "ZEISS Ru-capped collector 5 sr is supplied by ZEISS (Germany), category collector_mirror.",
+      "source": "S6-COLLECTOR-5SR",
+      "confidence": "MEDIUM"
+    },
+    {
+      "fact": "Collector extended to 5.5 sr is supplied by ZEISS (Germany), category collector_mirror.",
+      "source": "S6-COLLECTOR-5SR",
+      "confidence": "MEDIUM"
+    },
+    {
+      "fact": "ZEISS illuminator 4-mirror is supplied by ZEISS (Germany), category illuminator.",
+      "source": "S5-MIRROR-COUNT",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "ZEISS POB NA 0.33 6-mirror is supplied by ZEISS (Germany), category projection_optics.",
+      "source": "S1-ASML-NXE3400B",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "POB NA 0.33 interface-engineered coatings is supplied by ZEISS (Germany), category projection_optics.",
+      "source": "S4-MOSI-703",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "POB NA 0.33 dc-magnetron coatings is supplied by ZEISS (Germany), category projection_optics.",
+      "source": "S4-MOSI-688",
+      "confidence": "HIGH"
+    },
+    {
+      "fact": "ZEISS High-NA POB NA 0.55 is supplied by ZEISS (Germany), category projection_optics.",
+      "source": "S7-EXE5000-380M",
+      "confidence": "MEDIUM"
+    },
+    {
+      "fact": "Hydrogen-purged UHV system is supplied by UNSPECIFIED (United Kingdom), category vacuum_system.",
+      "source": "MODELED",
+      "confidence": "LOW"
+    }
+  ],
+  "general_background": [],
+  "refusals": [
+    {
+      "question": "What does an ASML collector mirror cost?",
+      "answer": "I don't have that. No public bill of materials exists for an EUV scanner. Our per-component figures are modelled splits of a published system total."
+    },
+    {
+      "question": "Can this machine reach 7 nm?",
+      "answer": "Not at NA 0.33. The computed half-pitch is 14.3 nm. Reaching 7 nm requires High-NA optics or multi-patterning."
+    },
+    {
+      "question": "Which Indian company makes EUV collectors?",
+      "answer": "None. Every Indian supplier in this database is marked HYPOTHETICAL. They are targets, not existing vendors."
+    },
+    {
+      "question": "What is the exact conversion efficiency?",
+      "answer": "Published values range from 2% to 6% depending on target geometry. Production machines run 5-6%. I will not quote a single figure as if it were exact."
+    }
+  ],
+  "_counts": {
+    "physics_facts": 10,
+    "component_facts": 16,
+    "general_background": 0,
+    "refusals": 4,
+    "total": 30
+  }
+}

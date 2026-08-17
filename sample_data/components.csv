@@ -1,0 +1,27 @@
+component_id,category,name,supplier,country,cost_usd,efficiency,lead_time_years,is_baseline,specs_json,source,confidence
+LAS_BASE,drive_laser,30 kW CO2 drive laser,Trumpf,Germany,28000000,0.97,4.5,1,"{""laser_power_kw"": 30.0, ""conversion_efficiency"": 0.055}",MODELED,LOW
+LAS_ALT1,drive_laser,20 kW CO2 drive laser,Trumpf,Germany,19500000,0.93,3.5,0,"{""laser_power_kw"": 20.0, ""conversion_efficiency"": 0.05}",MODELED,LOW
+LAS_ALT2,drive_laser,25 kW solid-state pumped laser,Consortium build,India,14200000,0.88,5.5,0,"{""laser_power_kw"": 25.0, ""conversion_efficiency"": 0.042}",MODELED,LOW
+LAS_ALT3,drive_laser,15 kW CO2 laser (derated),Domestic OEM,India,9800000,0.81,3.0,0,"{""laser_power_kw"": 15.0, ""conversion_efficiency"": 0.038}",MODELED,LOW
+DRP_BASE,droplet_generator,Tin droplet generator 50 kHz,ASML in-house,Netherlands,6000000,0.96,3.0,1,"{""droplet_rate_khz"": 50.0}",MODELED,LOW
+DRP_ALT1,droplet_generator,Tin droplet generator 40 kHz,Shimadzu,Japan,4300000,0.92,2.5,0,"{""droplet_rate_khz"": 40.0}",MODELED,LOW
+DRP_ALT2,droplet_generator,Piezo droplet generator 30 kHz,Domestic build,India,2600000,0.85,3.5,0,"{""droplet_rate_khz"": 30.0}",MODELED,LOW
+COL_BASE,collector_mirror,Mo/Si collector 5 sr,Zeiss,Germany,12000000,0.95,4.0,1,"{""collector_reflectivity"": 0.58, ""collection_solid_angle_sr"": 5.0}",MODELED,LOW
+COL_ALT1,collector_mirror,Mo/Si collector 4 sr,Zeiss,Germany,8700000,0.90,3.0,0,"{""collector_reflectivity"": 0.55, ""collection_solid_angle_sr"": 4.0}",MODELED,LOW
+COL_ALT2,collector_mirror,Ru-capped collector 3.5 sr,Domestic coating lab,India,5100000,0.83,4.5,0,"{""collector_reflectivity"": 0.48, ""collection_solid_angle_sr"": 3.5}",MODELED,LOW
+ILL_BASE,illuminator,Zeiss illuminator 6-mirror,Zeiss,Germany,18000000,0.94,4.0,1,"{""illuminator_mirrors"": 6}",MODELED,LOW
+ILL_ALT1,illuminator,Illuminator 5-mirror simplified,Zeiss,Germany,13400000,0.89,3.0,0,"{""illuminator_mirrors"": 5}",MODELED,LOW
+ILL_ALT2,illuminator,Illuminator 4-mirror domestic,Domestic optics,India,7900000,0.80,5.0,0,"{""illuminator_mirrors"": 4}",MODELED,LOW
+POB_BASE,projection_optics,Zeiss POB NA 0.33,Zeiss,Germany,60000000,0.96,6.0,1,"{""numerical_aperture"": 0.33, ""mirror_count"": 10, ""mirror_reflectivity"": 0.70, ""k1"": 0.35}",MODELED,LOW
+POB_ALT1,projection_optics,POB NA 0.33 reduced mirror count,Zeiss,Germany,47500000,0.91,5.0,0,"{""numerical_aperture"": 0.33, ""mirror_count"": 8, ""mirror_reflectivity"": 0.68, ""k1"": 0.38}",MODELED,LOW
+POB_ALT2,projection_optics,POB NA 0.25 domestic,Domestic optics consortium,India,29000000,0.79,7.0,0,"{""numerical_aperture"": 0.25, ""mirror_count"": 8, ""mirror_reflectivity"": 0.62, ""k1"": 0.40}",MODELED,LOW
+POB_ALT3,projection_optics,POB NA 0.55 High-NA,Zeiss,Germany,95000000,0.98,8.0,0,"{""numerical_aperture"": 0.55, ""mirror_count"": 10, ""mirror_reflectivity"": 0.70, ""k1"": 0.33}",MODELED,LOW
+VAC_BASE,vacuum_system,Hydrogen-purged UHV system,Edwards,United Kingdom,9000000,0.95,2.5,1,"{""base_pressure_pa"": 0.00001}",MODELED,LOW
+VAC_ALT1,vacuum_system,UHV system mid-tier,Pfeiffer,Germany,6400000,0.91,2.0,0,"{""base_pressure_pa"": 0.00003}",MODELED,LOW
+VAC_ALT2,vacuum_system,Domestic UHV assembly,Domestic vacuum,India,3800000,0.84,3.0,0,"{""base_pressure_pa"": 0.00008}",MODELED,LOW
+STG_BASE,wafer_stage,Dual magnetic levitation stage,ASML in-house,Netherlands,22000000,0.97,4.0,1,{},MODELED,LOW
+STG_ALT1,wafer_stage,Single maglev stage,Domestic precision,India,13100000,0.90,3.5,0,{},MODELED,LOW
+STG_ALT2,wafer_stage,Air-bearing precision stage,Domestic precision,India,8400000,0.82,3.0,0,{},MODELED,LOW
+MET_BASE,metrology_sensors,Full inline metrology suite,ASML in-house,Netherlands,8000000,0.96,2.5,1,{},MODELED,LOW
+MET_ALT1,metrology_sensors,Reduced metrology suite,Domestic sensors,India,4700000,0.90,2.0,0,{},MODELED,LOW
+MET_ALT2,metrology_sensors,Offline metrology only,Domestic sensors,India,2300000,0.79,1.5,0,{},MODELED,LOW

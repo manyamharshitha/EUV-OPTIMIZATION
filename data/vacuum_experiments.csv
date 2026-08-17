@@ -1,0 +1,9 @@
+experiment_id,chamber,buffer_gas,buffer_pressure_pa,degradation_pct_per_gigapulse,pulses_billion,reflectivity_loss_pct,lifetime_hours,lifetime_definition,contaminant,cleaning_method,data_type,source,confidence
+VX001,source vessel collector,hydrogen,100.0,,,,,ASML buffer gas pressure around collector,tin,H2 radical to stannane SnH4,PUBLISHED,S19-H2-100PA,HIGH
+VX002,source vessel collector,hydrogen,,0.100,,,,degradation rate below this value,tin and ions,H2 radical,PUBLISHED,S19-DEGRADE-01GP,MEDIUM
+VX003,source vessel collector,hydrogen,,,500.0,10.0,2880.0,10% loss at ~4 months as of end 2024,tin and ions,H2 radical,PUBLISHED,S19-500GP-10PCT,MEDIUM
+VX004,source vessel collector,hydrogen,,,,50.0,,industry definition of collector end of life,tin and ions,H2 radical,PUBLISHED,S19-LIFETIME-50PCT,HIGH
+VX005,multilayer mirror,hydrogen,,,,,,reflectivity restored after oxidation,surface oxide on Ru cap,atomic hydrogen hot wire,PUBLISHED,S21-ATOMIC-H-RESTORE,MEDIUM
+VX006,grazing incidence mirror,,,,,,,reflectivity degraded by exposure,carbon contamination,none,PUBLISHED,S22-CARBON-DEGRADE,MEDIUM
+VX007,laboratory surface,none,,,,,,tin drop removal study,tin droplets,cryogenic,PUBLISHED,S10-CRYO-TIN,LOW
+VX008,laboratory surface,hydrogen,,,,,,in situ tin transformation,tin,H2 surface wave plasma,PUBLISHED,S20-INSITU-TIN,LOW
