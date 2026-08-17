@@ -167,28 +167,11 @@ export function PlasmaField({ data }) {
       ctx.fill();
       ctx.restore();
 
-      // Graticule, clipped to where the pool is dark enough to carry it.
-      // Snapped to whole pixels so it stays a hairline.
-      ctx.save();
-      ctx.beginPath();
-      // 0.62, not 0.8: past that the pool is under ~70% opaque and the
-      // hairlines start showing on the mint outside the scene.
-      ctx.ellipse(poolCx, cy, poolR * 0.62, poolRy * 0.62, 0, 0, Math.PI * 2);
-      ctx.clip();
-      ctx.strokeStyle = "rgba(130, 190, 165, 0.08)";
-      ctx.lineWidth = 1;
-      const step = Math.max(30, Math.round(scale * 0.4));
-      ctx.beginPath();
-      for (let x = cx % step; x < w; x += step) {
-        ctx.moveTo(Math.round(x) + 0.5, 0);
-        ctx.lineTo(Math.round(x) + 0.5, h);
-      }
-      for (let y = cy % step; y < h; y += step) {
-        ctx.moveTo(0, Math.round(y) + 0.5);
-        ctx.lineTo(w, Math.round(y) + 0.5);
-      }
-      ctx.stroke();
-      ctx.restore();
+      // The graticule that used to be drawn here is gone. It was stroked in
+      // rgba(130, 190, 165, 0.08) — a mint green left from the old mint-ground
+      // theme. Against the dark violet pool the palette work introduced it no
+      // longer read as a faint instrument rule; it read as a grid laid over
+      // the figure, which is not what the scene is about.
 
       // ---- pulse timing ----
       // 50 kHz in a production source, slowed to ~1.1 Hz so a viewer can
