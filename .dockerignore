@@ -1,0 +1,22 @@
+.git
+.gitignore
+__pycache__
+**/__pycache__
+*.py[cod]
+
+# Frontend sources and toolchain: the image serves web/dist, which is
+# committed. Copying node_modules would add hundreds of MB for nothing.
+web/node_modules
+web/src
+web/public
+web/tools
+web/package.json
+web/package-lock.json
+web/vite.config.js
+web/index.html
+
+Dockerfile
+.dockerignore
+*.md
+.vscode
+.idea
