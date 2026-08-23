@@ -124,7 +124,18 @@ export function Home({ data, health, state, onOpen, busy }) {
 
           <div className="hero-cta">
             <button className="btn on btn-cta" onClick={() => onOpen(1)}>
-              Try the demo →
+              <span className="btn-cta-label">Try the demo</span>
+              <video
+                className="btn-cta-video"
+                src="/euv-demo-film.mp4"
+                loop
+                playsInline
+                preload="auto"
+                controls
+                muted={false}
+                onClick={(event) => event.stopPropagation()}
+              />
+              <span aria-hidden="true">→</span>
             </button>
           </div>
         </div>
