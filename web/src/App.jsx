@@ -4,6 +4,7 @@ import { Mark } from "./components/Mark.jsx";
 import { Boundary } from "./components/Boundary.jsx";
 import { ScreenField } from "./components/ScreenField.jsx";
 import { Home } from "./components/Home.jsx";
+import { Rail } from "./components/Rail.jsx";
 import {
   SCREENS, PRESETS,
   ScreenInput, ScreenResults, ScreenVisual, ScreenInteract,
@@ -99,6 +100,8 @@ export default function App() {
     <>
       <div className="field" />
       <div className="lattice" />
+
+      <Rail current={screen} onSelect={setScreen} />
 
       {/* The open screen's colour cascades to everything inside it — buttons,
           bars, readouts — so each of the nine has a distinct identity while

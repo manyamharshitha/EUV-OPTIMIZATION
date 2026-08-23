@@ -121,6 +121,12 @@ export function Home({ data, health, state, onOpen, busy }) {
               <span className="hero-l">compute</span>
             </div>
           </div>
+
+          <div className="hero-cta">
+            <button className="btn on btn-cta" onClick={() => onOpen(1)}>
+              Try the demo →
+            </button>
+          </div>
         </div>
 
         {/* The telemetry pill that used to float over the figure was removed:

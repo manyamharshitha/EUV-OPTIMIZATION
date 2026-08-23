@@ -933,6 +933,106 @@ table.spec td {
 }
 
 /* --------------------------------------------------------------------------
+   Hero CTA — "Try the demo"
+
+   Reuses .btn.on (the one primary dark fill already defined above) so it
+   matches every other primary action in the app rather than introducing a
+   second accent. btn-cta only adjusts size.
+   -------------------------------------------------------------------------- */
+
+.hero-cta {
+  margin-top: 24px;
+}
+.btn-cta {
+  padding: 12px 22px;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Rail — fixed left-corner nav to all nine screens
+
+   Floats over the page rather than reserving a column: the shell is centred
+   with its own max-width, so a column would either shrink shell content on
+   every screen or sit unused in the margin on anything narrower than ~1400px.
+   A floating capsule works at any width down to the breakpoint where it is
+   hidden outright, because the shell fills the full viewport there and a
+   fixed left element would sit on top of the masthead instead of beside it.
+   -------------------------------------------------------------------------- */
+
+.rail {
+  position: fixed;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  box-shadow: var(--sh-3);
+}
+.rail-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-3);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.rail-item:hover {
+  background: var(--bg-sink);
+  color: var(--ink);
+}
+.rail-item.on {
+  background: var(--accent, var(--brand-fill));
+  color: var(--accent-ink, var(--ink));
+}
+.rail-home {
+  color: var(--brand);
+}
+.rail-home.on {
+  background: var(--brand-fill);
+  color: var(--ink);
+}
+.rail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.rail-sep {
+  width: 18px;
+  height: 1px;
+  background: var(--hair-strong);
+  margin: 2px 0;
+}
+
+/* Below this, the shell has no side margin left for a floating rail not to
+   collide with the masthead and tiles, so it steps aside; Home's own tiles
+   and the screen pager remain the way in. */
+@media (max-width: 900px) {
+  .rail {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
    Focus — last, deliberately
 
    Focus rules have the same specificity as the hover/state rules above them
@@ -946,12 +1046,19 @@ table.spec td {
 .shell .tile:focus-visible,
 .shell input:focus-visible,
 .shell a:focus-visible,
-.shell [tabindex]:focus-visible {
+.shell [tabindex]:focus-visible,
+.rail-item:focus-visible {
   outline: 2px solid transparent;
   outline-offset: 2px;
   border-color: var(--brand);
   box-shadow: 0 0 0 3px var(--brand-ring);
   z-index: 1;
+}
+
+/* The rail sits outside .shell, so it needs its own filled-control gap rule
+   — the one above only fires for .shell .btn.on. */
+.rail-item.on:focus-visible {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 5px var(--brand-ring);
 }
 
 /* On a filled control the ring needs a gap in the page colour, or it merges
