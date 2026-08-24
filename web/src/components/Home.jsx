@@ -127,10 +127,10 @@ export function Home({ data, health, state, onOpen, busy }) {
               <span className="btn-cta-label">Try the demo</span>
               <video
                 className="btn-cta-video"
-                src="/euv-demo-film.mp4"
+                src="/euv-demo.mp4"
                 loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 controls
                 muted={false}
                 onClick={(event) => event.stopPropagation()}
