@@ -130,7 +130,7 @@ export function Home({ data, health, state, onOpen, busy }) {
                 src="/euv-demo.mp4"
                 loop
                 playsInline
-                preload="metadata"
+                preload="auto"
                 controls
                 muted={false}
                 onClick={(event) => event.stopPropagation()}
