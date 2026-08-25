@@ -50,7 +50,19 @@ MIME = {
     ".svg": "image/svg+xml",
     ".json": "application/json",
     ".ico": "image/x-icon",
+    # A <video> served as application/octet-stream is a download, not a
+    # stream: the browser will not start a media pipeline for a generic
+    # binary type.
+    ".mp4": "video/mp4",
+    ".webm": "video/webm",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".woff2": "font/woff2",
 }
+
+# Read files out in chunks rather than whole. A 6 MB video read with
+# handle.read() is 6 MB resident per concurrent request on a t3.micro.
+CHUNK = 64 * 1024
 
 
 def _float(params: dict, key: str, default=None):
@@ -290,6 +302,14 @@ ROUTES = {
 class Handler(BaseHTTPRequestHandler):
     server_version = "EUVOptimizer/1.0"
 
+    # HTTP/1.0 closes the socket after every response. A playing <video>
+    # issues a stream of range requests, so on 1.0 each one pays a fresh TCP
+    # handshake — measured at ~2.8 s to the EC2 box, which stalls playback no
+    # matter how small the file is. 1.1 keeps the connection open. Every
+    # response path here sends an accurate Content-Length, which is what
+    # makes persistent connections safe.
+    protocol_version = "HTTP/1.1"
+
     def log_message(self, fmt, *args):
         """Quieter than the default, but keep errors visible.
 
@@ -321,6 +341,77 @@ class Handler(BaseHTTPRequestHandler):
         # Content-Length, but no body.
         if not getattr(self, "_head_only", False):
             self.wfile.write(body)
+
+    def _send_file(self, target: str, content_type: str, cache: str) -> None:
+        """Serve a file on disk, honouring HTTP Range.
+
+        A <video> element does not download a file and then play it. It
+        opens with `Range: bytes=0-` and expects `206 Partial Content`, then
+        issues further ranges as it plays and whenever the viewer seeks. A
+        server that ignores Range and answers one 200 with the whole body
+        forces the browser to buffer the entire file before the first frame,
+        and leaves the seek bar dead. That is what was happening here: the
+        video was compressed 73 MB -> 6 MB and still stalled, because the
+        size was never the problem.
+        """
+        size = os.path.getsize(target)
+        start, end = 0, size - 1
+        status = 200
+
+        raw = self.headers.get("Range")
+        if raw and raw.startswith("bytes=") and size:
+            spec = raw[6:].split(",")[0].strip()
+            try:
+                first, _, last = spec.partition("-")
+                if not first:
+                    # `bytes=-500` means the final 500 bytes.
+                    length = int(last)
+                    if length <= 0:
+                        raise ValueError("empty suffix range")
+                    start = max(0, size - length)
+                else:
+                    start = int(first)
+                    if last:
+                        end = int(last)
+                if start > end or start >= size:
+                    raise ValueError("unsatisfiable")
+                end = min(end, size - 1)
+                status = 206
+            except ValueError:
+                self.send_response(416)
+                self.send_header("Content-Range", f"bytes */{size}")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
+
+        length = end - start + 1
+        self.send_response(status)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(length))
+        self.send_header("Accept-Ranges", "bytes")
+        if status == 206:
+            self.send_header("Content-Range", f"bytes {start}-{end}/{size}")
+        self.send_header("Cache-Control", cache)
+        self.end_headers()
+
+        if getattr(self, "_head_only", False):
+            return
+
+        # Players routinely abort a range mid-flight — they seek, or they
+        # have buffered enough. That closes the socket under us, which is
+        # normal traffic, not a fault worth a traceback.
+        try:
+            with open(target, "rb") as handle:
+                handle.seek(start)
+                remaining = length
+                while remaining > 0:
+                    block = handle.read(min(CHUNK, remaining))
+                    if not block:
+                        break
+                    self.wfile.write(block)
+                    remaining -= len(block)
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            pass
 
     def _send_json(self, payload: dict, code: int = 200) -> None:
         body = json.dumps(payload, default=str).encode("utf-8")
@@ -372,9 +463,21 @@ class Handler(BaseHTTPRequestHandler):
             return
 
         extension = os.path.splitext(target)[1]
-        with open(target, "rb") as handle:
-            self._send(200, handle.read(),
-                       MIME.get(extension, "application/octet-stream"))
+
+        # `no-store` is right for API answers, which change on every slider
+        # move, and wrong for static assets — it made the browser re-fetch
+        # the whole video on every page load. Vite fingerprints everything
+        # under /assets/, so those are safe to cache forever; index.html
+        # must always be revalidated or a deploy never reaches anyone.
+        if path == "/index.html":
+            cache = "no-cache"
+        elif path.startswith("/assets/"):
+            cache = "public, max-age=31536000, immutable"
+        else:
+            cache = "public, max-age=86400"
+
+        self._send_file(
+            target, MIME.get(extension, "application/octet-stream"), cache)
 
 
 def main() -> int:
