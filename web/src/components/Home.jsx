@@ -122,22 +122,28 @@ export function Home({ data, health, state, onOpen, busy }) {
             </div>
           </div>
 
+          {/* The video is a sibling of the button, not a child of it.
+              A <video controls> inside a <button> is invalid HTML, and the
+              practical consequence was that clicking the video's own play,
+              pause or seek controls also fired the button: the click reached
+              it despite stopPropagation, the app navigated to screen 1, Home
+              unmounted, and the narration cut off mid-sentence. Nesting an
+              interactive control inside another one has no correct
+              behaviour to fall back on, so the fix is to stop nesting. */}
           <div className="hero-cta">
             <button className="btn on btn-cta" onClick={() => onOpen(1)}>
-              <span className="btn-cta-label">Try the demo</span>
-              <video
-                className="btn-cta-video"
-                src="/euv-demo.mp4"
-                loop
-                playsInline
-                preload="auto"
-                controls
-                muted={false}
-                onClick={(event) => event.stopPropagation()}
-              />
-              <span aria-hidden="true">→</span>
+              Try the demo <span aria-hidden="true">→</span>
             </button>
           </div>
+
+          <video
+            className="hero-demo-video"
+            src="/euv-demo.mp4"
+            loop
+            playsInline
+            preload="auto"
+            controls
+          />
         </div>
 
         {/* The telemetry pill that used to float over the figure was removed:

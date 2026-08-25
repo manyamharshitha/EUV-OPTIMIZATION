@@ -1076,18 +1076,18 @@ td.num {
   font-weight: 600;
 }
 
-.btn-cta-label {
-  white-space: nowrap;
-}
-
-.btn-cta-video {
-  width: 120px;
-  height: 68px;
+/* The demo video, now its own block under the CTA rather than a 120x68
+   thumbnail crammed inside the button. At that size the controls were
+   smaller than a touch target, which is what pushed people into clicking
+   the surrounding button by accident. */
+.hero-demo-video {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin-top: 16px;
   border-radius: 10px;
-  object-fit: cover;
   background: #0c1323;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-edge, rgba(255, 255, 255, 0.28));
 }
 
 /* Tiles ------------------------------------------------------------------- */
