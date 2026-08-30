@@ -147,4 +147,4 @@ unit and the update procedure. `deploy/` holds the supporting files, and a
 
 ---
 
-Built for Hackverse 2.0.
+
